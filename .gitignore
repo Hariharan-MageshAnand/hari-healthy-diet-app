@@ -1,0 +1,24 @@
+.agent
+.agents
+.kiro
+AGENTS.md
+skills-lock.json
+
+# Dependency directories
+node_modules/
+
+# Build outputs
+dist/
+
+# Local env files
+.env
+.env.local
+.env.*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Test coverage
+coverage/
+.vitest/
