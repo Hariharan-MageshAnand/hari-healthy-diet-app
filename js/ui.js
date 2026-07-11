@@ -298,7 +298,7 @@ class UIManagerController {
             <div class="grocery-item-details">
               <span class="grocery-item-name">${item.item}</span>
               ${substitutionsText}
-              <span class="grocery-item-cost">Est. Cost: $${(item.estimatedCostUsd || 0).toFixed(2)}</span>
+              <span class="grocery-item-cost">Est. Cost: ₹${(item.estimatedCostInr || 0).toFixed(2)}</span>
             </div>
           `;
 
@@ -322,7 +322,7 @@ class UIManagerController {
     // Render Budget details
     if (plan.budgetSummary) {
       const summary = plan.budgetSummary;
-      totalCostEl.textContent = `$${(summary.totalEstimatedCostUsd || 0).toFixed(2)}`;
+      totalCostEl.textContent = `₹${(summary.totalEstimatedCostInr || 0).toFixed(2)}`;
       budgetTierEl.textContent = summary.budgetTier || 'Medium';
 
       // Set budget tier style class

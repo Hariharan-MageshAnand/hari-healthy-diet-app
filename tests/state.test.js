@@ -8,8 +8,9 @@ describe('AppState', () => {
     AppState.reset();
   });
 
-  it('should load an empty API key by default', () => {
-    expect(AppState.getApiKey()).toBe('');
+  it('should load an empty API key or the default VITE_GEMINI_API_KEY from environment', () => {
+    const expected = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_GEMINI_API_KEY) || '';
+    expect(AppState.getApiKey()).toBe(expected);
   });
 
   it('should save the API key to localStorage', () => {

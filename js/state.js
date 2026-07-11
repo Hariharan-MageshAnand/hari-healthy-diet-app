@@ -7,7 +7,8 @@ class AppStateController {
 
   reset() {
     this.state = {
-      apiKey: window.localStorage.getItem('gemini_api_key') || '',
+      apiKey: window.localStorage.getItem('gemini_api_key') || 
+              (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_GEMINI_API_KEY) || '',
       medicalReportText: '',
       dailyContext: '',
       generatedPlan: null,

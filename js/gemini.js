@@ -7,6 +7,7 @@ You MUST satisfy the following dietary restrictions and goals:
 2. Filter out any ingredients that are contraindicated for the user's detected conditions. For example, if they have pre-diabetes, strictly limit high-glycemic foods; if they have hypertension, strictly limit sodium; if they have a kidney issue, restrict high-phosphorus/potassium items; if they have allergies, strictly avoid those allergens.
 3. Tailor the portion size, preparation times, and recipes to fit the user's daily context. For example, if they are "very busy", provide recipes that take less than 15 minutes to prepare; if they are active, ensure adequate protein/carbs.
 4. Integrate the date and time context to adapt the plan (e.g. adjust for weekends vs weekdays or season if appropriate).
+5. All suggested meals MUST be traditional Indian dishes (e.g., Idli, Dosa, Roti, Poha, Khichdi, Dal, Sabzi, Pulao) using common Indian ingredients available locally in India. All cost estimations must be in Indian Rupees (₹).
 
 You MUST output your response in raw JSON format matching this schema strictly. Do NOT include markdown tags around the JSON, return ONLY the JSON block:
 {
@@ -39,12 +40,12 @@ You MUST output your response in raw JSON format matching this schema strictly. 
     {
       "item": "Ingredient name",
       "category": "Produce | Protein | Dairy | Grains | Pantry",
-      "estimatedCostUsd": 2.50,
+      "estimatedCostInr": 150,
       "substitutions": ["Alternative ingredient 1", "Alternative ingredient 2"]
     }
   ],
   "budgetSummary": {
-    "totalEstimatedCostUsd": 12.50,
+    "totalEstimatedCostInr": 500,
     "budgetTier": "Low | Medium | High",
     "savingTips": ["Tip 1", "Tip 2"]
   }
@@ -87,7 +88,7 @@ class GeminiServiceController {
       throw new Error('Gemini API Key is missing. Add it in settings.');
     }
 
-    const modelName = 'gemini-1.5-flash';
+    const modelName = 'gemini-flash-latest';
     const apiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`;
 
     const promptText = `
